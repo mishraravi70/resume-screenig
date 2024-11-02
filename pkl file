@@ -1,0 +1,16 @@
+#Now let’s train the model and print the classification report:
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.multiclass import OneVsRestClassifier
+from sklearn.metrics import accuracy_score
+
+clf = OneVsRestClassifier(KNeighborsClassifier())
+clf.fit(X_train,y_train)
+ypred = clf.predict(X_test)
+print(accuracy_score(y_test,ypred))
+##
+with open('tfidf.pkl', 'wb') as file:
+    pickle.dump(tfidf, file)
+
+# Saving the classifier
+with open('clf.pkl', 'wb') as file:
+    pickle.dump(clf, file)
